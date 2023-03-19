@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 
+import Link from 'next/link'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -14,7 +16,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main className={styles.main}>
+        <h1 className="title">
+          Read <Link href="/posts/first-post">this page!</Link>
+        </h1>
+        <Link href="/loginPage">Login</Link>
+      
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
@@ -40,6 +48,7 @@ export default function Home() {
         </div>
 
         <div className={styles.center}>
+          <span>learn &nbsp;</span>
           <Image
             className={styles.logo}
             src="/next.svg"
