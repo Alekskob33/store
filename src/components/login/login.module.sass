@@ -3,7 +3,52 @@
   flex-direction: column
   gap: 15px
   max-width: 300px
+  margin: 20px 0 20px 0
+  // margin: auto
   
+  *:disabled
+    opacity: 0.35
+
+.fields
   input
     border: 1px solid #000
-  input[type="text"]
+    display: block
+    width: 100%
+    + input, 
+    + label 
+      margin-top: 15px
+  
+.error_fields
+  @extend .fields
+  input
+    border-color: gray
+    border-style: dashed
+
+// PASSWORD
+.password_label
+  position: relative
+  display: block
+  input
+    padding-right: 40px
+
+.eye
+  position: absolute
+  top: 0
+  right: 10px
+  display: block
+  width: 34px
+  height: 100%
+
+  mask-image: url('/hide.png')
+  mask-size: contain
+  mask-position: center
+  background-color: rgba(black, 0.5)
+  cursor: pointer
+  
+.eye_hidden
+  @extend .eye
+  mask-image: url('/view.png')
+
+.err_msg
+  color: darken(red, 10%)
+  text-align: center

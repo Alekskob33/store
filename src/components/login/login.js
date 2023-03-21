@@ -1,41 +1,88 @@
-import styles from './login.module.sass';
-import {useState} from 'react';
+import s from './login.module.sass';
+
+import {useState, useContext} from 'react';
+import authContext from '../../context/authContext';
 
 export default function Login() {
+  const {token, setToken} = useContext(authContext);
+  console.log(token);
+
   const [username, setUsername] = useState('mor_2314');
   const [password, setPassword] = useState('83r5^_');
-  const [token, setToken] = useState('');
+  const [visiblePassword, setVisiblePassword] = useState(false);
+
+  const [status, setStatus] = useState('default'); // 'sending', 'error'
+  // const [token, setToken] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
-    
-    fetch('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-    })
-    .then((res) => {
-      // console.log("🚀 ~ res:", res)
-      return res.json()
-      })
-      .then((json) => setToken(json.token))
-      .catch((error) => console.error('Error:', error));
+    setStatus('sending');
+    logIn();
   }
 
-  return (
+  function logIn() {
+    const endPoint = 'https://fakestoreapi.com/auth/login';
+    const data = {
+      body: JSON.stringify({username, password}),
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    };
+
+    fetch(endPoint, data)
+      .then(res => {
+        if (!res.ok) throw new Error(res.status);
+        return res.json();
+      })
+      .then(json => {
+        setToken(json.token);
+        console.log('got token successfully');
+      })
+      .catch(err => {
+        setStatus('error');
+        setErrMsg('Error with status code: ' + err.message);
+      });
+    }
+    
+    return (
     <>
-      <form 
-        className={styles.formLogin}
+      <form className={s.formLogin}
         onSubmit={handleSubmit}
       >
-        <input type="text" placeholder="username" 
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input type="password" placeholder="password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button>Login</button>
+        <fieldset
+          className={status === 'error' ? s.error_fields : s.fields}
+          disabled={status === 'sending'} 
+        >
+          <input 
+            type="text" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="username" 
+            required
+            />
+          <label className={s.password_label}>
+            <input 
+              type={visiblePassword ? 'text' : 'password'} 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
+              required
+              />
+            <i 
+              onClick={() => setVisiblePassword(!visiblePassword)}
+              className={visiblePassword ? s.eye: s.eye_hidden}
+            ></i>
+          </label>
+        </fieldset>
+
+        {status === 'sending' 
+          ? <button disabled>sending ...</button>
+          : <button>Submit</button>
+        }
+        {status === 'error' && <p className={s.err_msg}>{errMsg}</p>}
       </form>
       {token && <p>Token: {token}</p>}
     </>

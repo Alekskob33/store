@@ -86,6 +86,7 @@ body {
 }
 
 body {
+  padding: 15px;
   color: rgb(var(--foreground-rgb));
   /* background: linear-gradient(
       to bottom,
@@ -104,4 +105,20 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+fieldset,
+input, button {
+  padding: 10px;
+  font-size: 18px;
+  line-height: 1em;
+  border: 1px solid gray;
+  border-radius: 0px;
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+button {
+  cursor: pointer;
 }
