@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 // import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 
@@ -21,7 +21,9 @@ export default function Home() {
         <h1 className="title">
           Read <Link href="/posts/first-post">this page!</Link>
         </h1>
+        
         <Link href="/loginPage">Login</Link>
+        <Link href="/products">Products Page</Link>
       
         <div className={styles.description}>
           <p>

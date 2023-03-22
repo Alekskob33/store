@@ -1,0 +1,91 @@
+.product
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: auto 60px auto 1fr
+  justify-items: center
+  max-width: 300px
+  padding: 15px
+  border: 1px dotted #000
+  text-align: center
+  overflow: hidden
+
+  p
+    width: 100%
+    overflow: hidden
+    overflow-wrap: break-word
+    margin-bottom: 15px
+
+.title
+  position: relative
+  max-height: 3em
+
+  -webkit-line-clamp: 2
+  -webkit-box-orient: vertical
+  display: -webkit-box
+  overflow: hidden
+
+
+.cost
+  margin-top: 10px
+  font-size: 50px
+
+.footer
+  display: flex
+  width: 100%
+  justify-content: space-between
+  align-items: center
+  padding: 10px 0 0 0
+
+.rating
+  position: relative
+  height: 25px
+  width: 125px
+
+  mask-image: url(/star.png)
+  mask-image-repeat: repeat-x
+  mask-size: auto 25px
+  mask-position: left center
+  background-color: lighten(gray, 30%)
+
+.rating:after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: calc(var(--rate, 0) / 5 * 100%)
+  @extend .rating
+  background-color: darken(red, 0%)
+
+.count
+  position: relative
+  display: block
+  font-size: 18px
+  line-height: 1
+  font-style: normal
+  font-family: cursive
+  padding: 3px 10px
+  // border-left: 1px solid rgba(red, 0.3)
+  color: darken(red, 10%)
+
+  &::before
+    content: 'votes: '
+    color: black
+    font-weight: normal
+
+.pic
+  height: 124px
+  object-fit: scale-down
+  object-position: center
+  margin-bottom: 20px
+  
+.desc
+  position: relative
+  max-height: 125px
+
+  -webkit-line-clamp: 4
+  -webkit-box-orient: vertical
+  display: -webkit-box
+  overflow: hidden
+
+// .category
+

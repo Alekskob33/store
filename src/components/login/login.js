@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import s from './login.module.sass';
 
 import {useState, useContext} from 'react';
@@ -85,6 +86,8 @@ export default function Login() {
         {status === 'error' && <p className={s.err_msg}>{errMsg}</p>}
       </form>
       {token && <p>Token: {token}</p>}
+      <br/>
+      <Link href="/">back to Home</Link>
     </>
   )
 }
