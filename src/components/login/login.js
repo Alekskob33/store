@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import {useRouter} from 'next/router';
+
 import s from './login.module.sass';
 
 import {useState, useContext} from 'react';
@@ -6,6 +8,7 @@ import authContext from '../../context/authContext';
 
 export default function Login() {
   const {token, setToken} = useContext(authContext);
+  const router = useRouter();
   console.log(token);
 
   const [username, setUsername] = useState('mor_2314');
@@ -13,7 +16,6 @@ export default function Login() {
   const [visiblePassword, setVisiblePassword] = useState(false);
 
   const [status, setStatus] = useState('default'); // 'sending', 'error'
-  // const [token, setToken] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
   function handleSubmit(event) {
@@ -41,6 +43,7 @@ export default function Login() {
       .then(json => {
         setToken(json.token);
         console.log('got token successfully');
+        router.push('/products');
       })
       .catch(err => {
         setStatus('error');

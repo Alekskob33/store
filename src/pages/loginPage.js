@@ -9,6 +9,7 @@ export default function LoginPage() {
         <title>Login</title>
         <meta name="description" content="login-form page" />
       </Head>
+      
       <Login/>
     </DefaultLayout>
   )
