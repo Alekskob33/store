@@ -1,0 +1,54 @@
+.container
+  height: 100%
+  padding: 20px
+  border: 1px dotted #000
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.title
+  margin-bottom: 30px
+
+.row
+  display: inline-flex
+  gap: 50px
+  text-align: left
+
+.form
+  min-width: 350px
+  display: flex
+  flex-direction: column
+  gap: 15px
+
+  input[type="text"]
+    text-transform: capitalize
+
+.image_wrapper
+  display: flex
+  flex-direction: column
+  gap: 15px
+
+.pic
+  flex: none
+  display: block
+  margin-top: 35px
+  margin-bottom: 20px
+
+.btn_submit
+  &:focus
+    box-shadow: none
+  &:not(:disabled)
+    color: #fff
+    background-color: lighten(red, 0%)
+    border-color: red
+    
+.ok_icon
+  display: inline-block
+  margin-right: 7px
+  width: 1.5em
+  height: 1.5em
+  border-radius: 50%
+  background-color: green
+  color: #fff
+  text-align: center

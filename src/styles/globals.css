@@ -113,7 +113,7 @@ a {
 }
 
 fieldset,
-input, button {
+input, textarea, button {
   padding: 10px;
   font-size: 18px;
   line-height: 1em;
@@ -124,6 +124,63 @@ input, button {
   box-shadow: none;
 }
 
+input:invalid, 
+textarea:invalid {
+  border-color: red;
+}
+
+textarea {
+  font-size: 15px;
+  line-height: 1.4em;
+}
+
 button {
   cursor: pointer;
+}
+
+input:focus, 
+select:focus, 
+textarea:focus, 
+button:focus {
+  box-shadow: 0 0 1px 5px rgba(59, 153, 252, .5);
+}
+
+select {
+  display: block;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 400;
+  color: #444;
+  line-height: 1;
+  padding: 10px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url(/down-arrow.png);
+  background-repeat: no-repeat;
+  background-position: right .7em top 50%;
+  background-size: 1.3em auto;
+
+}
+
+select::-ms-expand {
+  display: none;
+}
+select:hover {
+  border-color: #888;
+}
+select:focus {
+  border-color: #aaa;
+  color: #222;
+  outline: none;
+}
+ 
+select option {
+  font-weight:normal
 }
