@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import s from './singleProduct.module.sass'
+import ControlsNav from './controls'
 
 export default function SingleProduct({data}) {
   return (
@@ -15,7 +16,7 @@ export default function SingleProduct({data}) {
         src={data.image}
         width={124} 
         height={124}
-        alt={'description'}
+        alt={data.title}
         className={s.pic}
       />
       <p className={s.desc}>{data.description}</p>
@@ -25,6 +26,8 @@ export default function SingleProduct({data}) {
         <div className={s.rating} style={{'--rate': data.rating.rate}}></div>
         <i className={s.count}>{data.rating.count}</i>
       </div>
+
+      <ControlsNav productData={data}/>
     </div>
   )
 }

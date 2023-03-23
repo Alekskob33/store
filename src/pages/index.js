@@ -22,8 +22,11 @@ export default function Home() {
           Read <Link href="/posts/first-post">this page!</Link>
         </h1>
         
-        <Link href="/loginPage">Login</Link>
-        <Link href="/products">Products Page</Link>
+        <nav>
+          <Link href="/loginPage">Login</Link><br/>
+          <Link href="/products">Products Page</Link><br/>
+          <Link href="/delete-product/1">Delete Product</Link><br/>
+        </nav>
       
         <div className={styles.description}>
           <p>
