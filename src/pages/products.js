@@ -1,4 +1,5 @@
 import s from '../styles/ProductsPage.module.sass'
+import TopBar from '../components/topBar/topBar'
 
 import Link from 'next/link';
 import ProductsList from '../components/productsList/productsList';
@@ -62,6 +63,8 @@ export default function Products({categories}) {
 
   return (
     <>
+      <TopBar/>
+
       {isLoading && <Preloader/>}
       <h3>Products: 
         <i className={s.current_category}>{currentName}</i>

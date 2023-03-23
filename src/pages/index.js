@@ -27,6 +27,7 @@ export default function Home() {
           <Link href="/products">Products Page</Link><br/>
           <Link href="/delete-product">Delete Product</Link><br/>
           <Link href="/edit-product">Edit Product</Link><br/>
+          <Link href="/create-product">Create Product</Link><br/>
         </nav>
       
         <div className={styles.description}>
