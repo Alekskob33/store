@@ -89,12 +89,6 @@ body {
 body {
   padding: 0 15px 15px 15px;
   color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
 }
 
 #__next {
@@ -154,7 +148,7 @@ select {
   font-family: sans-serif;
   font-weight: 400;
   color: #444;
-  line-height: 1;
+  line-height: 1.2;
   padding: 10px;
   width: 100%;
   max-width: 100%;
@@ -186,4 +180,8 @@ select:focus {
  
 select option {
   font-weight:normal
+}
+
+ol, ul {
+  padding: 15px;
 }
