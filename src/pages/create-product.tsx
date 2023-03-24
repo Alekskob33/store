@@ -1,6 +1,8 @@
 import s from '@/styles/Create.module.sass';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import authContext from '@/context/authContext';
+import {useRouter} from 'next/router';
 import Link from 'next/link';
 
 interface ProductData {
@@ -25,9 +27,18 @@ interface Props {
 }
 
 export default function EditProduct({ categories }: Props): JSX.Element {
+  const { token } = useContext(authContext);
+  const router = useRouter();
+
   const [productData, setProductData] = useState<ProductData>(initData);
   const [isCreated, setIsCreated] = useState(false);
 
+  useEffect(() => {
+    if (!token) {
+      router.push('/loginPage');
+    }
+  },[token])
+  
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void {
     const data = { ...productData };
     const key = e.target.name as string;

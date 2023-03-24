@@ -1,16 +1,25 @@
 import s from '@/styles/Delete.module.sass';
 import Preloader from '@/components/preloader/preloader';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import authContext from '@/context/authContext';
+import {useRouter} from 'next/router';
 import Image from 'next/image';
 
 export default function DeleteProduct(): JSX.Element {
+  const { token } = useContext(authContext);
   const router = useRouter();
+
   const { id, title, image } = router.query as any;
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
   const [waiting, setWaiting] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (!token) {
+      router.push('/loginPage');
+    }
+  },[token])
+  
   function handleDeleteClick(): void {
     const endPoint = `https://fakestoreapi.com/products/${id}`;
     const data = {

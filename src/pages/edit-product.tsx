@@ -1,7 +1,9 @@
 import s from '@/styles/Edit.module.sass';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Link from 'next/link';
+import authContext from '@/context/authContext';
+import {useRouter} from 'next/router';
 
 interface Product {
   title: string;
@@ -19,10 +21,18 @@ interface EditProductProps {
 }
 
 export default function EditProduct({ categories, product, id }: EditProductProps) {
-  console.log("🚀 ~ categories:", categories)
+  const { token } = useContext(authContext);
+  const router = useRouter();
+
   const [productData, setProductData] = useState<Product>(product);
   const [isUpdated, setIsUpdated] = useState(false);
 
+  useEffect(() => {
+    if (!token) {
+      router.push('/loginPage');
+    }
+  },[token])
+  
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const data = { ...productData };
     const key = e.target.name;
