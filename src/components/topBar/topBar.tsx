@@ -16,7 +16,7 @@ export default function TopBar() {
     // '/edit-product', 'delete-product', 'create-product'
     get btnCreate() {
       if (!token) return false;
-      return (['/',  '/products', '/single-product', '/delete-product'].includes(thisPath))},
+      return (['/products', '/single-product', '/delete-product'].includes(thisPath))},
     get btnLogin() {
       if (token) return false;
       return (['/',  '/products', '/single-product', '/create-product', '/edit-product', '/delete-product'].includes(thisPath))},
