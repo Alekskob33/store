@@ -38,7 +38,7 @@ export default function DeleteProduct(): JSX.Element {
   }
 
   function handleCancelClick(): void {
-    router.back();
+    router.push('/products');
   }
 
   return (
