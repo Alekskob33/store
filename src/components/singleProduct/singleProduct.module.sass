@@ -1,0 +1,84 @@
+.product
+  position: relative
+  display: flex
+  gap: 30px
+  max-width: 700px
+  margin: auto
+  padding: 50px 15px 30px
+  border: 1px dotted #000
+  overflow: hidden
+
+  p
+    width: 100%
+    overflow: hidden
+    overflow-wrap: break-word
+    margin-bottom: 15px
+
+// .content
+
+.title
+  margin-bottom: 20px
+
+.cost
+  margin-top: 10px
+  margin-bottom: 0
+  font-size: 50px
+
+.footer
+  display: flex
+  width: 100%
+  justify-content: space-between
+  align-items: center
+  padding: 10px 0 0 0
+
+.rating
+  position: relative
+  height: 25px
+  width: 125px
+
+  mask-image: url(/star.png)
+  mask-image-repeat: repeat-x
+  mask-size: auto 25px
+  mask-position: left center
+  background-color: lighten(gray, 30%)
+
+.rating:after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: calc(var(--rate, 0) / 5 * 100%)
+  @extend .rating
+  background-color: darken(red, 0%)
+
+.count
+  position: relative
+  display: block
+  font-size: 18px
+  line-height: 1
+  font-style: normal
+  font-family: cursive
+  padding: 3px 10px
+  color: darken(red, 10%)
+
+  &::before
+    content: 'votes: '
+    color: black
+    font-weight: normal
+
+.pic_container
+  flex: none
+
+.pic
+  width: 250px
+  height: 250px
+  object-fit: scale-down
+  object-position: center
+  margin-bottom: 20px
+  
+.desc
+  position: relative
+  max-height: 125px
+
+// .category
+

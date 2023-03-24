@@ -3,7 +3,7 @@ import Image from 'next/image'
 import s from './productCard.module.sass'
 import ControlsNav from './controls'
 
-export default function ProductCard({data}) {
+export default function productCard({data}) {
   return (
     <div className={s.product}>
       <p className={s.category}>{data.category}</p>
@@ -12,13 +12,16 @@ export default function ProductCard({data}) {
         <h4 className={s.title}>{data.title}</h4>
       </div>
       
-      <Image
-        src={data.image}
-        width={124} 
-        height={124}
-        alt={data.title}
-        className={s.pic}
-      />
+      <Link href={`/single-product?id=${data.id}`}>
+        <Image
+          src={data.image}
+          width={124} 
+          height={124}
+          alt={data.title}
+          className={s.pic}
+        />
+      </Link>
+      
       <p className={s.desc}>{data.description}</p>
       <p className={s.cost}>{data.price.toLocaleString('en-EN', { style: 'currency', currency: 'USD' })}</p>
 

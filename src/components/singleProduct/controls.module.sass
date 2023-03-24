@@ -1,0 +1,28 @@
+.nav
+  position: absolute
+  right: 15px
+  top: 10px
+  display: flex
+  gap: 10px
+
+.btn_remove
+  @extend %btn
+  background: url(/delete.png) no-repeat center/contain
+
+.btn_edit
+  @extend %btn
+  background: url(/edit.png) no-repeat center/contain
+
+%btn
+  border: none
+  display: block
+  width: 22px
+  height: 30px
+
+  font-size: 0
+  line-height: 0
+  cursor: pointer
+
+  opacity: 0.5
+  &:hover
+    opacity: 1

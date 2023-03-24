@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import ProductCard from '../productCard/productCard';
 import s from './productsList.module.sass';
 
