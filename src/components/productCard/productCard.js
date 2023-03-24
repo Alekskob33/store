@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import s from './singleProduct.module.sass'
+import s from './productCard.module.sass'
 import ControlsNav from './controls'
 
-export default function SingleProduct({data}) {
+export default function ProductCard({data}) {
   return (
     <div className={s.product}>
       <p className={s.category}>{data.category}</p>
