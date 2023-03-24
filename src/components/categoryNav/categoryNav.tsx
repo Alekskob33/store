@@ -1,23 +1,28 @@
 import s from './categoryNav.module.sass';
 
-export default function CategoryNav({names, currentName, onNavClick}) {
+interface CategoryNavProps {
+  names: string[];
+  currentName: string;
+  onNavClick: (name: string) => void;
+}
+
+export default function CategoryNav({ names, currentName, onNavClick }: CategoryNavProps) {
   return (
     <nav className={s.nav}>
-      { names.map((categoryName, index) => {
+      {names.map((categoryName, index) => {
         return (
-          <button 
+          <button
             key={index}
             className={categoryName === currentName ? s.btn_active : ''}
             onClick={() => {
               const name = categoryName === currentName ? 'all' : categoryName;
-              onNavClick(name)
-              }
-            }
+              onNavClick(name);
+            }}
           >
             {categoryName}
           </button>
-        )
+        );
       })}
     </nav>
-  )
+  );
 }

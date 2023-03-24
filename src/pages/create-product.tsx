@@ -1,77 +1,102 @@
-import s from '@/styles/Create.module.sass'
-import Image from 'next/image'
-import {useState} from 'react'
-import Link from 'next/link'
+import s from '@/styles/Create.module.sass';
+import Image from 'next/image';
+import { useState } from 'react';
+import Link from 'next/link';
 
-const initData = {
+interface ProductData {
+  title: string;
+  price: number;
+  description: string;
+  image: string;
+  category: string;
+  [key: string]: string | number;
+}
+
+const initData: ProductData = {
   title: '',
   price: 0,
   description: '',
   image: '',
-  category: ''
+  category: '',
+};
+
+interface Props {
+  categories: string[];
 }
 
-export default function EditProduct({categories}) {
-  const [productData, setProductData] = useState(initData);
+export default function EditProduct({ categories }: Props): JSX.Element {
+  const [productData, setProductData] = useState<ProductData>(initData);
   const [isCreated, setIsCreated] = useState(false);
-  
-  function handleChange(e) {
-    const data = {...productData};
-    const key = e.target.name;
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void {
+    const data = { ...productData };
+    const key = e.target.name as string;
     data[key] = e.target.value;
-    
+
     setIsCreated(false);
     setProductData(data);
   }
-  
-  function handleSubmit(e) {
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
     const endPoint = `https://fakestoreapi.com/products`;
-    const {title, price, description, image, category} = productData;
+    const { title, price, description, image, category } = productData;
     const data = {
-      method:"POST",
+      method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title, price, description, image, category
-      })
+        title,
+        price,
+        description,
+        image,
+        category,
+      }),
     };
 
     fetch(endPoint, data)
-      .then(res => {
-        if (!res.ok) throw new Error(res.status)
+      .then((res) => {
+        if (!res.ok) throw new Error(res.status.toString());
         console.log('success');
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         setProductData(data);
         setIsCreated(true);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('Error with status code: ' + err.message);
-      })
+      });
   }
 
-  function reset() {
+  function reset(): void {
     setProductData(initData);
     setIsCreated(false);
   }
-  
+
   const imageURLPattern = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
-  const isImageURL = (str) => !!str.match(imageURLPattern);
-  
+  const isImageURL = (str: string): boolean => !!str.match(imageURLPattern);
+
   if (isCreated) {
     return (
       <div className={s.container}>
-        <p><span className={s.ok_icon}>✔</span>Product has been added.</p>
-        <h4>Do you want to create new one?</h4><br/>
-        <button className={s.btn_continue} onClick={reset}>Yes</button><br/>
+        <p>
+          <span className={s.ok_icon}>✔</span>Product has been added.
+        </p>
+        <h4>
+          Do you want to create new one?
+        </h4>
+        <br />
+        <button className={s.btn_continue} onClick={reset}>
+          Yes
+        </button>
+        <br />
         <Link href="/products">back to Products Page</Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -133,7 +158,7 @@ export default function EditProduct({categories}) {
             value={productData.description}
             onChange={handleChange}
             required
-            rows='5'
+            rows={5}
           />
           <button 
             className={s.btn_submit}
@@ -147,7 +172,9 @@ export default function EditProduct({categories}) {
   )
 }
 
-export async function getServerSideProps() {
+import { GetServerSideProps } from 'next';
+
+export const getServerSideProps: GetServerSideProps = async () => {
   const categoriesEndPoint = 'https://fakestoreapi.com/products/categories';
   const categoriesRes = await fetch(categoriesEndPoint);
   const categories = await categoriesRes.json();
@@ -158,3 +185,4 @@ export async function getServerSideProps() {
     }
   }
 }
+

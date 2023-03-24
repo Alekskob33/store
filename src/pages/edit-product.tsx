@@ -1,54 +1,77 @@
-import s from '@/styles/Edit.module.sass'
-import Image from 'next/image'
-import {useState} from 'react'
-import Link from 'next/link'
+import s from '@/styles/Edit.module.sass';
+import Image from 'next/image';
+import { useState } from 'react';
+import Link from 'next/link';
 
-export default function EditProduct({categories, product, id}) {
-  const [productData, setProductData] = useState(product);
+interface Category {
+  name: string;
+}
+
+interface Product {
+  title: string;
+  price: number;
+  description: string;
+  image: string;
+  category: string;
+  [key: string]: string | number;
+}
+
+interface EditProductProps {
+  categories: Category[];
+  product: Product;
+  id: number;
+}
+
+export default function EditProduct({ categories, product, id }: EditProductProps) {
+  const [productData, setProductData] = useState<Product>(product);
   const [isUpdated, setIsUpdated] = useState(false);
-  
-  function handleChange(e) {
-    const data = {...productData};
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    const data = { ...productData };
     const key = e.target.name;
     data[key] = e.target.value;
-    
+
     setIsUpdated(false);
     setProductData(data);
   }
-  
-  function handleSubmit(e) {
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const endPoint = `https://fakestoreapi.com/products/${id}`;
-    const {title, price, description, image, category} = productData;
+    const { title, price, description, image, category } = productData;
     const data = {
-      method:"PUT",
+      method: 'PUT',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title, price, description, image, category
-      })
+        title,
+        price,
+        description,
+        image,
+        category,
+      }),
     };
 
     fetch(endPoint, data)
-      .then(res => {
-        if (!res.ok) throw new Error(res.status)
+      .then((res) => {
+        if (!res.ok) throw new Error(res.status.toString());
         console.log('success');
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         setProductData(data);
         setIsUpdated(true);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('Error with status code: ' + err.message);
-      })
+      });
   }
-  
+
   const imageURLPattern = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
-  const isImageURL = (str) => !!str.match(imageURLPattern);
+  const isImageURL = (str: string) => !!str.match(imageURLPattern);
   
   return (
     <div className={s.container}>
@@ -82,7 +105,8 @@ export default function EditProduct({categories, product, id}) {
             name='category'
             value={productData.category}
             onChange={handleChange}>
-            {categories.map((name, i) => (<option key={i} value={name}>{name}</option>))}
+            {categories.map((category: Category, i: number) => (<option key={i} value={category.name}>{category.name}</option>))}
+
           </select>
 
           <p>Title:</p>
@@ -109,7 +133,7 @@ export default function EditProduct({categories, product, id}) {
             value={productData.description}
             onChange={handleChange}
             required
-            rows='5'
+            rows={5}
           />
           <button 
             className={s.btn_submit}
@@ -124,7 +148,9 @@ export default function EditProduct({categories, product, id}) {
   )
 }
 
-export async function getServerSideProps(context) {
+import { GetServerSideProps } from 'next';
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const {id} = context.query;
 
   const categoriesEndPoint = 'https://fakestoreapi.com/products/categories';

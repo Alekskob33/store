@@ -7,26 +7,15 @@ import Preloader from '../components/preloader/preloader';
 
 import {useState, useEffect} from 'react';
 
-// DATA STRUCTURE -------
-// const data = {
-//   id: 1,
-//   title: "",
-//   price: 109.95,
-//   description: "",
-//   category: "",
-//   image: "https://fakestoreapi.com/img/x.jpg",
-//   rating: {
-//       "rate": 3.5,
-//       "count": 120
-//   }
-// };
-// -----------------------
+interface ProductsProps {
+  categories: string[];
+}
 
-export default function Products({categories}) {
+export default function Products({categories}: ProductsProps) {
   const [currentName, setCurrentName] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   
-  function handleNavClick(name) {
+  function handleNavClick(name:string) {
     setCurrentName(name);
   }
   
@@ -43,14 +32,14 @@ export default function Products({categories}) {
     console.log('use effect');
   }, [currentName]);
 
-  function getProducts(categoryName) {
+  function getProducts(categoryName:string) {
     const endPoint = categoryName === 'all' 
       ? 'https://fakestoreapi.com/products'
       : 'https://fakestoreapi.com/products/category/' + categoryName;
   
     fetch(endPoint)
       .then(res => {
-        if (!res.ok) throw new Error(res.status)
+        if (!res.ok) throw new Error(res.status.toString())
         return res.json();
       })
       .then(d => {

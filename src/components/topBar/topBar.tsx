@@ -36,7 +36,7 @@ export default function TopBar() {
       {isVisible.btnLogin && 
         <Link href="/loginPage" className={s.login_button}/>}  
       {isVisible.btnLogout && 
-        <button onClick={() => setToken(null)} className={s.logout_button}></button>}  
+        <button onClick={() => setToken('')} className={s.logout_button}></button>}  
     </div>
   )
 }

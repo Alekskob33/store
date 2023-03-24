@@ -18,12 +18,12 @@ export default function Login() {
   const [status, setStatus] = useState('default'); // 'sending', 'error'
   const [errMsg, setErrMsg] = useState('');
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus('sending');
     logIn();
   }
-
+  
   function logIn() {
     const endPoint = 'https://fakestoreapi.com/auth/login';
     const data = {
@@ -37,7 +37,7 @@ export default function Login() {
 
     fetch(endPoint, data)
       .then(res => {
-        if (!res.ok) throw new Error(res.status);
+        if (!res.ok) throw new Error(res.status.toString());
         return res.json();
       })
       .then(json => {
@@ -50,7 +50,6 @@ export default function Login() {
         setErrMsg('Error with status code: ' + err.message);
       });
     }
-    
     return (
     <>
       <form className={s.formLogin}
