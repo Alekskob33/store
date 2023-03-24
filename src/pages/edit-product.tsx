@@ -3,10 +3,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 
-interface Category {
-  name: string;
-}
-
 interface Product {
   title: string;
   price: number;
@@ -17,12 +13,13 @@ interface Product {
 }
 
 interface EditProductProps {
-  categories: Category[];
+  categories: string[];
   product: Product;
   id: number;
 }
 
 export default function EditProduct({ categories, product, id }: EditProductProps) {
+  console.log("🚀 ~ categories:", categories)
   const [productData, setProductData] = useState<Product>(product);
   const [isUpdated, setIsUpdated] = useState(false);
 
@@ -105,7 +102,7 @@ export default function EditProduct({ categories, product, id }: EditProductProp
             name='category'
             value={productData.category}
             onChange={handleChange}>
-            {categories.map((category: Category, i: number) => (<option key={i} value={category.name}>{category.name}</option>))}
+            {categories.map((category: string, i: number) => (<option key={i} value={category}>{category}</option>))}
 
           </select>
 
