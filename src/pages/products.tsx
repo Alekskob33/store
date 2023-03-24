@@ -52,11 +52,10 @@ export default function Products({categories}: ProductsProps) {
   return (
     <>
       {isLoading && <Preloader/>}
-      <h3>Products: 
+      <h3>Product Category: 
         <i className={s.current_category}>{currentName}</i>
-      </h3>
+      </h3><br/><br/>
       
-      <br/>
       <CategoryNav 
         names={categoryNames} 
         currentName={currentName}
