@@ -1,7 +1,7 @@
 import s from './topBar.module.sass'
 import Link from 'next/link'
 import {useContext} from 'react'
-import authContext from '@/context/authContext'
+import authContext from '../../context/authContext'
 import {useRouter} from 'next/router'
 
 export default function TopBar() {
