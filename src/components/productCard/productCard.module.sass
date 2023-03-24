@@ -6,9 +6,12 @@
   justify-items: center
   max-width: 300px
   padding: 15px
-  border: 1px dotted #000
+  border: 1px solid rgba(black, 0.2)
   text-align: center
   overflow: hidden
+  transition: box-shadow 200ms
+  &:hover
+    box-shadow: 0 0 30px rgba(black, 0.2)
 
   p
     width: 100%
@@ -65,7 +68,6 @@
   font-style: normal
   font-family: cursive
   padding: 3px 10px
-  // border-left: 1px solid rgba(red, 0.3)
   color: darken(red, 10%)
 
   &::before
@@ -78,6 +80,10 @@
   object-fit: scale-down
   object-position: center
   margin-bottom: 20px
+  transition: transform 300ms ease-out 200ms
+  &:hover
+    transform: scale(1.2)
+    
   
 .desc
   position: relative

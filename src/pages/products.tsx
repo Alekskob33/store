@@ -50,12 +50,12 @@ export default function Products({categories}: ProductsProps) {
   }
 
   return (
-    <>
+    <main>
       {isLoading && <Preloader/>}
       <h3>Product Category: 
         <i className={s.current_category}>{currentName}</i>
       </h3><br/><br/>
-      
+
       <CategoryNav 
         names={categoryNames} 
         currentName={currentName}
@@ -68,7 +68,7 @@ export default function Products({categories}: ProductsProps) {
 
       <br/>
       <Link href="/">back to Home Page</Link>
-    </>
+    </main>
   )
 }
 

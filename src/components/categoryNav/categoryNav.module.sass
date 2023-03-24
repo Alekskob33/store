@@ -4,12 +4,15 @@
   align-items: center
   justify-content: center
   margin-bottom: 20px
+    
   > button
-    margin-bottom: -1px
     margin-right: -1px
+    &:not(.btn_active):hover
+      background-color: lighten(black, 50%)
+      color: #fff
 
 .btn_active
-  background-color: lighten(red, 0%)
   border-color: red
+  background-color: red
   z-index: 1
   color: #fff
