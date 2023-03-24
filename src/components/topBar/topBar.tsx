@@ -24,7 +24,7 @@ export default function TopBar() {
       if (!token) return false;
       return (['/',  '/products', '/single-product', '/create-product', '/edit-product', '/delete-product'].includes(thisPath))},
     get btnCatalog() {
-      return (['/',  '/single-product', '/create-product', '/edit-product', '/delete-product'].includes(thisPath))},
+      return (['/', '/single-product', '/create-product', '/edit-product', '/delete-product'].includes(thisPath))},
   }
 
   return (
