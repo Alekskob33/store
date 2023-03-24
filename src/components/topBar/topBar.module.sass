@@ -1,15 +1,43 @@
 .topBar
-  display: flex
+  position: sticky
+  top: 0
+  z-index: 1000
 
-.add_button
+  display: flex
+  gap: 15px
+  justify-content: flex-end
+  align-items: center
+  width: 100%
+  max-width: 900px
+  
+  margin-bottom: 20px
+  padding: 15px 0
+
+  background-color: #fff
+
+%btn
   display: inline-block
-  margin-left: auto
   width: 40px
   height: 40px
-  mask-image: url(/add.png)
   background-color: grey
   mask-size: contain
   border: none
-
   &:hover
     background-color: red
+
+.add_button
+  @extend %btn
+  mask-image: url(/add.png)
+
+.login_button
+  @extend %btn
+  mask-image: url(/login.png)
+.logout_button
+  @extend %btn
+  mask-image: url(/logout.png)
+
+.catalog
+  margin-right: auto
+  font-weight: bold
+  &:hover
+    color: red

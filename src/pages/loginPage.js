@@ -4,13 +4,12 @@ import Head from 'next/head';
 
 export default function LoginPage() {
   return (
-    <DefaultLayout>
+    <>
       <Head>
         <title>Login</title>
         <meta name="description" content="login-form page" />
       </Head>
-      
       <Login/>
-    </DefaultLayout>
+    </>
   )
 }

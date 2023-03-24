@@ -43,7 +43,7 @@ export default function Login() {
       .then(json => {
         setToken(json.token);
         console.log('got token successfully');
-        router.push('/products');
+        router.back();
       })
       .catch(err => {
         setStatus('error');
@@ -56,6 +56,7 @@ export default function Login() {
       <form className={s.formLogin}
         onSubmit={handleSubmit}
       >
+        <h2>Login</h2>
         <fieldset
           className={status === 'error' ? s.error_fields : s.fields}
           disabled={status === 'sending'} 
@@ -88,7 +89,6 @@ export default function Login() {
         }
         {status === 'error' && <p className={s.err_msg}>{errMsg}</p>}
       </form>
-      {token && <p>Token: {token}</p>}
       <br/>
       <Link href="/">back to Home</Link>
     </>
