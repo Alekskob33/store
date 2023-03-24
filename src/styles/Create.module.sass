@@ -1,4 +1,7 @@
 .container
+  width: 100%
+  max-width: 700px
+  margin: 0 auto
   padding: 20px
   border: 1px dotted #000
   display: flex
@@ -6,16 +9,26 @@
   align-items: center
   justify-content: center
 
+  input, select
+    font-size: 15px
+  textarea
+    font-size: 13px
+    @media screen and (max-width: 600px)
+      height: 300px
+
 .title
   margin-bottom: 30px
 
 .row
-  display: inline-flex
+  display: flex
+  width: 100%
   gap: 50px
   text-align: left
+  @media screen and (max-width: 600px)
+    flex-direction: column
 
 .form
-  min-width: 350px
+  flex-basis: 60%
   display: flex
   flex-direction: column
   gap: 15px
@@ -24,22 +37,27 @@
     text-transform: capitalize
 
 .image_wrapper
+  flex-basis: 40%
   display: flex
   flex-direction: column
+  align-items: center
   gap: 15px
 
 .pic
+  width: 100%
+  max-width: 250px
   flex: none
   display: block
   margin-top: 35px
   margin-bottom: 20px
+  object-fit: scale-down
 
 .btn_submit
   &:focus
     box-shadow: none
   &:not(:disabled)
     color: #fff
-    background-color: lighten(red, 0%)
+    background-color: red
     border-color: red
     
 .ok_icon
@@ -51,9 +69,3 @@
   background-color: green
   color: #fff
   text-align: center
-
-.btn_continue
-  &:hover
-    background-color: green
-    border-color: green
-    color: #fff
